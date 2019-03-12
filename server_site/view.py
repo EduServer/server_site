@@ -8,10 +8,10 @@ def notebook(request):
 def index(request):
     return notebook(request)
 
-def Jupyter(request, notebook_name):
+def jupyter(request, notebook_name):
     # Connect to Jupyter Notebook Server for opening notebook_name
     context = {}
-    context['jupyter_server'] = 'http://127.0.0.1:5000/notebooks/'
+    context['jupyter_server'] = 'http://127.0.0.1:8888/notebooks/'
     context['name'] = notebook_name + '.ipynb'
     return render(request, "jupyter.html", context)
 
