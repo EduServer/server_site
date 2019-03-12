@@ -1,0 +1,8 @@
+{%extends "base.html" %}
+
+{% block maindiv %}
+<iframe id="notebook" src="{{ jupter_server|add:name }}" />
+    <script>
+    console.log("test")
+    </script>
+{% endblock %}
