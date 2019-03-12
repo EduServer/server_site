@@ -23,7 +23,7 @@ from . import view
 urlpatterns = [
     url(r'', view.index, name='page-index'),
     url(r'^admin/', admin.site.urls, name='page-admin'),
-    url(r'^index/$', view.notebook, name='page-notebook'),
+    #url(r'^index/$', view.notebook, name='page-notebook'),
     url(r'^index/notebook/(\w+).ipynb$', view.jupyter, name='page-jupyter'),
 ]
 

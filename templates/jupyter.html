@@ -1,6 +1,7 @@
 {%extends "base.html" %}
 
 {% block maindiv %}
+<h3>Example Jupyter Notebook</h3>
 <iframe id="notebook" src="{{ jupter_server|add:name }}" />
     <script>
     console.log("test")
