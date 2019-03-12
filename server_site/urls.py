@@ -21,10 +21,10 @@ from django.conf.urls import url
 from . import view
 
 urlpatterns = [
-    path('', view.index, name='page-index'),
-    path('^admin/', admin.site.urls, name='page-admin'),
-    path('^index/', view.notebook, name='page-notebook'),
-    path('^index/notebook/(\w+).ipynb$', view.jupyter, name='page-jupyter'),
+    url(r'', view.index, name='page-index'),
+    url(r'^admin/', admin.site.urls, name='page-admin'),
+    url(r'^index/$', view.notebook, name='page-notebook'),
+    url(r'^index/notebook/(\w+).ipynb$', view.jupyter, name='page-jupyter'),
 ]
 
 handler404 = view.page_not_found
