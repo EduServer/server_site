@@ -13,7 +13,7 @@ def jupyter(request, notebook_name):
     context = {}
     context['jupyter_server'] = 'http://192.168.3.80:8888/notebooks/'
     context['name'] = notebook_name + '.ipynb'
-    context['token'] = "8941de39399a51163e132a264b265f181b817b9fc4253f5c"
+    context['token'] = "531fd582066762d586fef888248f69e31ca63c15277a863d"
     return render(request, "jupyter.html", context)
 
 def page_not_found(request):

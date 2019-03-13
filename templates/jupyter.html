@@ -6,7 +6,8 @@
 <p>Notebook Name: {{ name }}</p>
 <p>Token: {{ token }}</p>
 <p>Full Request: {{ jupyter_server|add:name }}</p>
-<iframe id="notebook" src="{{ jupyter_server|add:name }}?token={{ token }}">
+<hr>
+<iframe id="nb-iframe" src="{{ jupyter_server|add:name }}?token={{ token }}">
 </iframe>
 <script>console.log("test")</script>
 {% endblock %}
