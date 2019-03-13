@@ -2,7 +2,7 @@
 
 {% block maindiv %}
 <h3>Example Jupyter Notebook</h3>
-<iframe id="notebook" src="{{ jupter_server|add:name }}" />
+<iframe id="notebook" src="{{ jupter_server|add:name }}?token={{ token }}" />
     <script>
     console.log("test")
     </script>
