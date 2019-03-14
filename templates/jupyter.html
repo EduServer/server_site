@@ -7,7 +7,7 @@
 <p>Token: {{ token }}</p>
 <p>Full Request: {{ jupyter_server|add:name }}</p>
 <hr>
-<iframe id="nb-iframe" src="{{ jupyter_server|add:name }}?token={{ token }}">
+<iframe id="nb-iframe" src="{{ jupyter_server|add:name }}?token={{ token }}" scrolling='no'>
 </iframe>
 <script>console.log("test")</script>
 {% endblock %}
