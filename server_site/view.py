@@ -18,7 +18,7 @@ def notebook(request):
 def index(request):
     # Configure Server
     init()
-    cmd = ['jupyter', 'notebook', '--port=' + PORT, '--token=' + TOKEN, '--allow-root']
+    cmd = ['nohup', 'jupyter', 'notebook', '--port=' + PORT, '--token=' + TOKEN, '--allow-root']
     os.system(' '.join(cmd))
     return notebook(request)
 
