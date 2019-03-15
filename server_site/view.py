@@ -1,4 +1,14 @@
+import os
 from django.shortcuts import render
+
+global PORT
+global TOKEN
+
+def init():
+    global PORT
+    global TOKEN
+    PORT = '8888'
+    TOKEN = '531fd582066762d586fef888248f69e31ca63c15277a863d'
 
 def notebook(request):
     context = {}
@@ -6,14 +16,18 @@ def notebook(request):
     return render(request, "notebook.html", context)
 
 def index(request):
+    # Configure Server
+    init()
+    cmd = ['jupyter', 'notebook', '--port=' + PORT, '--token=' + TOKEN, '--allow-root']
+    os.system(' '.join(cmd))
     return notebook(request)
 
 def jupyter(request, notebook_name):
     # Connect to Jupyter Notebook Server for opening notebook_name
     context = {}
-    context['jupyter_server'] = 'http://192.168.3.80:8888/notebooks/'
+    context['jupyter_server'] = 'http://192.168.3.80:'+PORT+'/notebooks/'
     context['name'] = notebook_name + '.ipynb'
-    context['token'] = "531fd582066762d586fef888248f69e31ca63c15277a863d"
+    context['token'] = TOKEN
     return render(request, "jupyter.html", context)
 
 def page_not_found(request):
