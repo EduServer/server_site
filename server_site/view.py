@@ -3,6 +3,8 @@ from django.shortcuts import render
 
 global PORT
 global TOKEN
+global FLAG
+FLAG = False
 
 def init():
     global PORT
@@ -16,10 +18,13 @@ def notebook(request):
     return render(request, "notebook.html", context)
 
 def index(request):
+    global FLAG
     # Configure Server
-    init()
-    cmd = ['nohup', 'jupyter', 'notebook', '--port=' + PORT, '--token=' + TOKEN, '--allow-root', '&']
-    os.system(' '.join(cmd))
+    if not FLAG:
+        init()
+        cmd = ['nohup', 'jupyter', 'notebook', '--port=' + PORT, '--NotebookApp.token=' + TOKEN, '--allow-root', '&']
+        os.system(' '.join(cmd))
+    FLAG = True
     return notebook(request)
 
 def jupyter(request, notebook_name):
