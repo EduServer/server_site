@@ -22,7 +22,7 @@ def index(request):
     # Configure Server
     if not FLAG:
         init()
-        cmd = ['nohup', 'jupyter', 'notebook', '--port=' + PORT, '--NotebookApp.token=' + TOKEN, '--allow-root', '&']
+        cmd = ['LANG=zh_CN', 'nohup', 'jupyter', 'notebook', '--port=' + PORT, '--NotebookApp.token=' + TOKEN, '--allow-root', '&']
         os.system(' '.join(cmd))
     FLAG = True
     return notebook(request)
