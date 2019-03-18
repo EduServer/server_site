@@ -7,6 +7,12 @@
 <p>Token: {{ token }}</p>
 <p>Full Request: {{ jupyter_server|add:name }}</p>
 <hr>
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" id='save-notebook', class="btn btn-default">保存文件</button>
+  <button type="button" id='scroll-top', class="btn btn-default">回到顶部</button>
+  <button type="button" id='scroll-bottom', class="btn btn-default">回到底部</button>
+</div>
+<hr>
 <iframe id="nb-iframe" src="{{ jupyter_server|add:name }}?token={{ token }}">
 </iframe>
 <script>console.log("test")</script>
