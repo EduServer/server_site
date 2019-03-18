@@ -30,6 +30,7 @@ def index(request):
     return notebook(request)
 
 def jupyter(request, notebook_name):
+    init()
     # Connect to Jupyter Notebook Server for opening notebook_name
     context = {}
     context['jupyter_server'] = 'http://192.168.3.80:'+PORT+'/notebooks/'
