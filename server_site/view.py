@@ -10,6 +10,7 @@ FLAG = False
 def init():
     global PORT
     global TOKEN
+    global DIR
     PORT = '8888'
     TOKEN = '531fd582066762d586fef888248f69e31ca63c15277a863d'
     DIR = '/etc/notebooks'
