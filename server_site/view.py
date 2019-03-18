@@ -4,6 +4,7 @@ from django.shortcuts import render
 global PORT
 global TOKEN
 global FLAG
+global DIR
 FLAG = False
 
 def init():
@@ -11,6 +12,7 @@ def init():
     global TOKEN
     PORT = '8888'
     TOKEN = '531fd582066762d586fef888248f69e31ca63c15277a863d'
+    DIR = '/etc/notebooks'
 
 def notebook(request):
     context = {}
@@ -22,7 +24,7 @@ def index(request):
     # Configure Server
     if not FLAG:
         init()
-        cmd = ['LANG=zh_CN', 'nohup', 'jupyter', 'notebook', '--port=' + PORT, '--NotebookApp.token=' + TOKEN, '--allow-root', '&']
+        cmd = ['LANG=zh_CN', 'nohup', 'jupyter', 'notebook', '--port=' + PORT, '--NotebookApp.token=' + TOKEN, '--NotebookApp.notebook_dir=' + DIR, '--allow-root', '&']
         os.system(' '.join(cmd))
     FLAG = True
     return notebook(request)
