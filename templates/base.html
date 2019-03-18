@@ -16,17 +16,20 @@
             $(function(argument) {
                 $('#save-notebook').click(function(){
                     var notebook = document.getElementById(frameID);
-                    action = "save-notebook";
+                    var action = "save-notebook";
+                    alert(action);
                     notebook.contentWindow.postMessage(action, "*");
                 })
                 $('#scroll-top').click(function(){
                     var notebook = document.getElementById(frameID);
-                    action = "scroll-top";
+                    var action = "scroll-top";
+                    alert(action);
                     notebook.contentWindow.postMessage(action, "*");
                 })
                 $('#scroll-bottom').click(function(){
                     var notebook = document.getElementById(frameID);
-                    action = "scroll-bottom";
+                    var action = "scroll-bottom";
+                    alert(action);
                     notebook.contentWindow.postMessage(action, "*");
                 })
             })
