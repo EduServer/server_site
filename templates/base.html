@@ -29,6 +29,21 @@
                     var action = "scroll-bottom";
                     notebook.contentWindow.postMessage(action, "*");
                 })
+                $('#shutdown-kernel').click(function(){
+                    var notebook = document.getElementById(frameID);
+                    var action = "shutdown-kernel";
+                    notebook.contentWindow.postMessage(action, "*");
+                })
+                $('#start-kernel').click(function(){
+                    var notebook = document.getElementById(frameID);
+                    var action = "start-kernel";
+                    notebook.contentWindow.postMessage(action, "*");
+                })
+                $('#export-html').click(function(){
+                    var notebook = document.getElementById(frameID);
+                    var action = "export-html";
+                    notebook.contentWindow.postMessage(action, "*");
+                })
             })
         </script>
 
