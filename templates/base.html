@@ -39,6 +39,11 @@
                     var action = "start-kernel";
                     notebook.contentWindow.postMessage(action, "*");
                 })
+                $('#export-notebook').click(function(){
+                    var notebook = document.getElementById(frameID);
+                    var action = "export-notebook";
+                    notebook.contentWindow.postMessage(action, "*");
+                })
                 $('#export-html').click(function(){
                     var notebook = document.getElementById(frameID);
                     var action = "export-html";
