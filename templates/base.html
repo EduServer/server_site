@@ -13,41 +13,48 @@
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <script type="text/javascript">
             var frameID = 'nb-iframe';
+            var data = {"actions": "", "msg": ""}
             $(function(argument) {
                 $('#save-notebook').click(function(){
                     var notebook = document.getElementById(frameID);
-                    var action = "save-notebook";
-                    notebook.contentWindow.postMessage(action, "*");
+                    data.actions = "save-notebook";
+                    notebook.contentWindow.postMessage(data, "*");
                 })
                 $('#scroll-top').click(function(){
                     var notebook = document.getElementById(frameID);
-                    var action = "scroll-top";
-                    notebook.contentWindow.postMessage(action, "*");
+                    data.actions = "scroll-top";
+                    notebook.contentWindow.postMessage(data, "*");
                 })
                 $('#scroll-bottom').click(function(){
                     var notebook = document.getElementById(frameID);
-                    var action = "scroll-bottom";
-                    notebook.contentWindow.postMessage(action, "*");
+                    data.actions = "scroll-bottom";
+                    notebook.contentWindow.postMessage(data, "*");
                 })
                 $('#shutdown-kernel').click(function(){
                     var notebook = document.getElementById(frameID);
-                    var action = "shutdown-kernel";
-                    notebook.contentWindow.postMessage(action, "*");
+                    data.actions = "shutdown-kernel";
+                    notebook.contentWindow.postMessage(data, "*");
                 })
                 $('#start-kernel').click(function(){
                     var notebook = document.getElementById(frameID);
-                    var action = "start-kernel";
-                    notebook.contentWindow.postMessage(action, "*");
+                    data.actions = "start-kernel";
+                    notebook.contentWindow.postMessage(data, "*");
                 })
                 $('#export-notebook').click(function(){
                     var notebook = document.getElementById(frameID);
-                    var action = "export-notebook";
-                    notebook.contentWindow.postMessage(action, "*");
+                    data.actions = "export-notebook";
+                    notebook.contentWindow.postMessage(data, "*");
                 })
                 $('#export-html').click(function(){
                     var notebook = document.getElementById(frameID);
-                    var action = "export-html";
-                    notebook.contentWindow.postMessage(action, "*");
+                    data.actions = "export-html";
+                    notebook.contentWindow.postMessage(data, "*");
+                })
+                $('#scroll-heading').click(function(){
+                    var notebook = document.getElementById(frameID);
+                    data.actions = "scroll-heading";
+                    data.msg = $('#scroll-heading').text();
+                    notebook.contentWindow.postMessage(data, "*");
                 })
             })
         </script>
