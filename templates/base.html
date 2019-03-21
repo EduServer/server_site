@@ -15,7 +15,6 @@
             var frameID = 'nb-iframe';
             // Add click event that can post massage to iframe.
             var actions_list = ["save-notebook", "scroll-top", "scroll-bottom", "shutdown-kernel", "start-kernel", "export-notebook", "export-html", "scroll-heading"];
-            
             $(function(argument) {
                 for(var i = 0;i < actions_list.length; i ++) {
                     var n_action = actions_list[i];
@@ -52,7 +51,8 @@
                         $(function() {
                             links[i].click(function(){
                                 var notebook = document.getElementById(frameID);
-                                var data = {"actions": "scroll-heading", "msg": links[i].text};
+                                var data = {"actions": "scroll-heading", "msg": $(this).text};
+                                console.log(data)
                                 notebook.contentWindow.postMessage(data, "*");
                             });
                         });
