@@ -15,16 +15,16 @@
             var frameID = 'nb-iframe';
             // Add click event that can post massage to iframe.
             var actions_list = ["save-notebook", "scroll-top", "scroll-bottom", "shutdown-kernel", "start-kernel", "export-notebook", "export-html", "scroll-heading"];
-            $(function() {
-                for (var i = 0;i < actions_list.length; i ++) {
+            for (var i = 0;i < actions_list.length; i ++) {
+                $(function() {
                     $("#" + actions_list[i]).click(function(){
                         var notebook = document.getElementById(frameID);
                         var data = {"actions": actions_list[i], "msg": ""};
                         if (data.actions == "scroll-heading") data.msg = $('#scroll-heading').text();
                         notebook.contentWindow.postMessage(data, "*");
                     });
-                }
-            });
+                });
+            }
             // Generate Table of Content in jupyter notebook
             window.addEventListener('message', function(event){
                 // Will print message continuously ???
@@ -41,10 +41,12 @@
                     // add click events for link
                     var links = $('#step-menu a');
                     for (var i = 0;i < links.length;i ++) {
-                        links[i].click(function(){
-                            var notebook = document.getElementById(frameID);
-                            var data = {"actions": "scroll-heading", "msg": links[i].text};
-                            notebook.contentWindow.postMessage(data, "*");
+                        $(function() {
+                            links[i].click(function(){
+                                var notebook = document.getElementById(frameID);
+                                var data = {"actions": "scroll-heading", "msg": links[i].text};
+                                notebook.contentWindow.postMessage(data, "*");
+                            });
                         });
                     }
                 }
