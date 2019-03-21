@@ -47,11 +47,11 @@
                     // add click events for link ?????
                     var links = $('#step-menu p');
                     for (var i = 0;i < links.length;i ++) {
-                        console.log(links[i].text);
+                        console.log(links[i].textContent);
                         links[i].click(function() {
-                            alert(this.text);
+                            alert(this.textContent);
                             var notebook = document.getElementById(frameID);
-                            var data = {"actions": "scroll-heading", "msg": this.text};
+                            var data = {"actions": "scroll-heading", "msg": this.textContent};
                             console.log(data)
                             notebook.contentWindow.postMessage(data, "*");
                         });
