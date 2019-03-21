@@ -12,51 +12,49 @@
         <!--jQuery-->
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <script type="text/javascript">
+            // function for postMessage
+            function post_to_iframe(frameID, act, msg) {
+                var notebook = document.getElementById(frameID);
+                notebook.contentWindow.postMessage({"actions": act, "msg": msg}, "*");
+            }
+
             var frameID = 'nb-iframe';
-            var data = {"actions": "", "msg": ""}
-            $(function(argument) {
-                $('#save-notebook').click(function(){
-                    var notebook = document.getElementById(frameID);
-                    data.actions = "save-notebook";
-                    notebook.contentWindow.postMessage(data, "*");
-                })
-                $('#scroll-top').click(function(){
-                    var notebook = document.getElementById(frameID);
-                    data.actions = "scroll-top";
-                    notebook.contentWindow.postMessage(data, "*");
-                })
-                $('#scroll-bottom').click(function(){
-                    var notebook = document.getElementById(frameID);
-                    data.actions = "scroll-bottom";
-                    notebook.contentWindow.postMessage(data, "*");
-                })
-                $('#shutdown-kernel').click(function(){
-                    var notebook = document.getElementById(frameID);
-                    data.actions = "shutdown-kernel";
-                    notebook.contentWindow.postMessage(data, "*");
-                })
-                $('#start-kernel').click(function(){
-                    var notebook = document.getElementById(frameID);
-                    data.actions = "start-kernel";
-                    notebook.contentWindow.postMessage(data, "*");
-                })
-                $('#export-notebook').click(function(){
-                    var notebook = document.getElementById(frameID);
-                    data.actions = "export-notebook";
-                    notebook.contentWindow.postMessage(data, "*");
-                })
-                $('#export-html').click(function(){
-                    var notebook = document.getElementById(frameID);
-                    data.actions = "export-html";
-                    notebook.contentWindow.postMessage(data, "*");
-                })
-                $('#scroll-heading').click(function(){
-                    var notebook = document.getElementById(frameID);
-                    data.actions = "scroll-heading";
-                    data.msg = $('#scroll-heading').text();
-                    notebook.contentWindow.postMessage(data, "*");
-                })
-            })
+            // Add click event that can post massage to iframe.
+            var actions_list = ["save-notebook", "scroll-top", "scroll-bottom", "shutdown-kernel", "start-kernel", "export-notebook", "export-html", "scroll-heading"];
+            $(function() {
+                for (var i = 0;i < actions_list.length; i ++) {
+                    var msg = "";
+                    if (actions_list[i] == "scroll-heading") msg = $('#scroll-heading').text();
+                    $("#" + actions_list[i]).click(
+                        post_to_iframe(frameID, actions_list[i], msg)
+                    );
+                }
+            });
+            // Generate Table of Content in jupyter notebook
+            window.addEventListener('message', function(event){
+                // Will print message continuously ???
+                // if(event.origin !== 'http://192.168.3.80') return;
+                act = event.data.actions;
+                msg = event.data.msg;
+                // For test
+                console.log("The response is: " + act + " " + msg);
+                // Switch to the event
+                if(act == 'notebook-heading') {
+                    var menu_obj = $('#step-menu');
+                    // replace html
+                    menu_obj.html(msg);
+                    // add click events for link
+                    var links = $('#step-menu a');
+                    for (var i = 0;i < links.length;i ++) {
+                        links[i].click(
+                            post_to_iframe(frameID, "scroll-heading", links[i].text)
+                        };
+                    }
+                }
+                else {
+                    console.log("Unrecognized command!");
+                }
+            },false);
         </script>
 
         <style type="text/css" media="screen">
@@ -102,6 +100,8 @@
                     <li><a href="/notebooks/notebook1.ipynb">notebook1.ipynb</a></li>
                     <li><a href="/notebooks/notebook2.ipynb">notebook2.ipynb</a></li>
                     <li><a href="/notebooks/notebook3.ipynb">notebook3.ipynb</a></li>
+                    <hr>
+                    <div id="step-menu"></div>
                 </div>
                 <div class="col-sm-8 center-view center-view-padding">
                     {% block maindiv %}
