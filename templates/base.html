@@ -45,7 +45,7 @@
                         links[i].click(function(){
                             var notebook = document.getElementById(frameID);
                             notebook.contentWindow.postMessage({"actions": "scroll-heading", "msg": links[i].text}, "*");
-                        }};
+                        });
                     }
                 }
                 else {
