@@ -15,16 +15,21 @@
             var frameID = 'nb-iframe';
             // Add click event that can post massage to iframe.
             var actions_list = ["save-notebook", "scroll-top", "scroll-bottom", "shutdown-kernel", "start-kernel", "export-notebook", "export-html", "scroll-heading"];
-            for (var i = 0;i < actions_list.length; i ++) {
-                $(function() {
+            var data = {"actions": "", "msg": ""};
+            $(function(argument) {
+                for(var i = 0;i < actions_list.length; i ++) {
                     $("#" + actions_list[i]).click(function(){
                         var notebook = document.getElementById(frameID);
-                        var data = {"actions": actions_list[i], "msg": ""};
-                        if (data.actions == "scroll-heading") data.msg = $('#scroll-heading').text();
+                        data.actions = actions_list[i];
+                        if(data.actions == "scroll-heading") {
+                            data.msg = $('#scroll-heading').text();
+                        } else {
+                            data.msg = "";
+                        }
                         notebook.contentWindow.postMessage(data, "*");
                     });
-                });
-            }
+                }
+            });
             // Generate Table of Content in jupyter notebook
             window.addEventListener('message', function(event){
                 // Will print message continuously ???
