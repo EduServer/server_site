@@ -48,14 +48,12 @@
                     // add click events for link
                     var links = $('#step-menu a');
                     for (var i = 0;i < links.length;i ++) {
-                        $(function() {
-                            links[i].click(function(){
-                                var notebook = document.getElementById(frameID);
-                                var data = {"actions": "scroll-heading", "msg": $(this).text};
-                                console.log(data)
-                                notebook.contentWindow.postMessage(data, "*");
-                            });
-                        });
+                        links[i].click = function() {
+                            var notebook = document.getElementById(frameID);
+                            var data = {"actions": "scroll-heading", "msg": $(this).text};
+                            console.log(data)
+                            notebook.contentWindow.postMessage(data, "*");
+                        };
                     }
                 }
                 else {
@@ -70,7 +68,7 @@
                 width: 100%;
                 overflow: hidden;
                 border: none;
-                height: 1200px;
+                height: 700px;
             }
         </style>
     </head>
@@ -107,6 +105,7 @@
                     <li><a href="/notebooks/notebook1.ipynb">notebook1.ipynb</a></li>
                     <li><a href="/notebooks/notebook2.ipynb">notebook2.ipynb</a></li>
                     <li><a href="/notebooks/notebook3.ipynb">notebook3.ipynb</a></li>
+                    <hr>
                     <hr>
                     <div id="step-menu"></div>
                 </div>
