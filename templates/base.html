@@ -46,16 +46,15 @@
                     menu_obj.html(msg);
                 } else if(act == 'notebook-toc-evt') {
                     // add click events for link ?????
-                    var links = $('#step-menu p');
+                    var links = $('#step-menu li');
                     for (var i = 0;i < links.length;i ++) {
-                        console.log(links[i].textContent);
-                        links[i].click = function() {
-                            alert(this.textContent);
+                        // console.log($(links[i]).text());
+                        $(links[i]).click(function() {
                             var notebook = document.getElementById(frameID);
-                            var data = {"actions": "scroll-heading", "msg": this.textContent};
+                            var data = {"actions": "scroll-heading", "msg": $(this).text()};
                             console.log(data)
                             notebook.contentWindow.postMessage(data, "*");
-                        };
+                        });
                     }
                 }
                 else {
