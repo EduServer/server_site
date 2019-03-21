@@ -12,22 +12,18 @@
         <!--jQuery-->
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <script type="text/javascript">
-            // function for postMessage
-            function post_to_iframe(frameID, act, msg) {
-                var notebook = document.getElementById(frameID);
-                notebook.contentWindow.postMessage({"actions": act, "msg": msg}, "*");
-            }
-
             var frameID = 'nb-iframe';
             // Add click event that can post massage to iframe.
             var actions_list = ["save-notebook", "scroll-top", "scroll-bottom", "shutdown-kernel", "start-kernel", "export-notebook", "export-html", "scroll-heading"];
             $(function() {
                 for (var i = 0;i < actions_list.length; i ++) {
+                    var act = actions_list[i];
                     var msg = "";
-                    if (actions_list[i] == "scroll-heading") msg = $('#scroll-heading').text();
-                    $("#" + actions_list[i]).click(
-                        post_to_iframe(frameID, actions_list[i], msg)
-                    );
+                    if (act == "scroll-heading") msg = $('#scroll-heading').text();
+                    $("#" + act).click(function(){
+                        var notebook = document.getElementById(frameID);
+                        notebook.contentWindow.postMessage({"actions": act, "msg": msg}, "*");
+                    });
                 }
             });
             // Generate Table of Content in jupyter notebook
@@ -46,9 +42,10 @@
                     // add click events for link
                     var links = $('#step-menu a');
                     for (var i = 0;i < links.length;i ++) {
-                        links[i].click(
-                            post_to_iframe(frameID, "scroll-heading", links[i].text)
-                        };
+                        links[i].click(function(){
+                            var notebook = document.getElementById(frameID);
+                            notebook.contentWindow.postMessage({"actions": "scroll-heading", "msg": links[i].text}, "*");
+                        }};
                     }
                 }
                 else {
