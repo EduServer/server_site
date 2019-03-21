@@ -40,10 +40,11 @@
                 // For test
                 console.log("The response is: " + act + " " + msg);
                 // Switch to the event
-                if(act == 'notebook-heading') {
+                if(act == 'notebook-toc') {
                     var menu_obj = $('#step-menu');
                     // replace html
                     menu_obj.html(msg);
+                } else if(act == 'notebook-toc-evt') {
                     // add click events for link ?????
                     var links = $('#step-menu p');
                     for (var i = 0;i < links.length;i ++) {
