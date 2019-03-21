@@ -17,11 +17,11 @@
             var actions_list = ["save-notebook", "scroll-top", "scroll-bottom", "shutdown-kernel", "start-kernel", "export-notebook", "export-html", "scroll-heading"];
             $(function() {
                 for (var i = 0;i < actions_list.length; i ++) {
-                    var act = actions_list[i];
-                    var msg = "";
-                    if (act == "scroll-heading") msg = $('#scroll-heading').text();
                     $("#" + act).click(function(){
                         var notebook = document.getElementById(frameID);
+                        var act = actions_list[i];
+                        var msg = "";
+                        if (act == "scroll-heading") msg = $('#scroll-heading').text();
                         notebook.contentWindow.postMessage({"actions": act, "msg": msg}, "*");
                     });
                 }
