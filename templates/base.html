@@ -17,7 +17,7 @@
             var actions_list = ["save-notebook", "scroll-top", "scroll-bottom", "shutdown-kernel", "start-kernel", "export-notebook", "export-html", "scroll-heading"];
             $(function() {
                 for (var i = 0;i < actions_list.length; i ++) {
-                    $("#" + act).click(function(){
+                    $("#" + actions_list[i]).click(function(){
                         var notebook = document.getElementById(frameID);
                         var act = actions_list[i];
                         var msg = "";
