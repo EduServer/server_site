@@ -44,11 +44,11 @@
                     var menu_obj = $('#step-menu');
                     // replace html
                     menu_obj.html(msg);
-                    // add click events for link
+                    // add click events for link ?????
                     var links = $('#step-menu a');
                     for (var i = 0;i < links.length;i ++) {
                         console.log(links[i].text);
-                        links[i].click(function() {
+                        links[i].on('click', function() {
                             var notebook = document.getElementById(frameID);
                             var data = {"actions": "scroll-heading", "msg": this.text};
                             console.log(data)
