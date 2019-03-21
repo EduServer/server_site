@@ -19,10 +19,9 @@
                 for (var i = 0;i < actions_list.length; i ++) {
                     $("#" + actions_list[i]).click(function(){
                         var notebook = document.getElementById(frameID);
-                        var act = actions_list[i];
-                        var msg = "";
-                        if (act == "scroll-heading") msg = $('#scroll-heading').text();
-                        notebook.contentWindow.postMessage({"actions": act, "msg": msg}, "*");
+                        var data = {"actions": actions_list[i], "msg": ""};
+                        if (data.actions == "scroll-heading") data.msg = $('#scroll-heading').text();
+                        notebook.contentWindow.postMessage(data, "*");
                     });
                 }
             });
@@ -44,7 +43,8 @@
                     for (var i = 0;i < links.length;i ++) {
                         links[i].click(function(){
                             var notebook = document.getElementById(frameID);
-                            notebook.contentWindow.postMessage({"actions": "scroll-heading", "msg": links[i].text}, "*");
+                            var data = {"actions": "scroll-heading", "msg": links[i].text};
+                            notebook.contentWindow.postMessage(data, "*");
                         });
                     }
                 }
