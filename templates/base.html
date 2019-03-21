@@ -48,7 +48,8 @@
                     var links = $('#step-menu a');
                     for (var i = 0;i < links.length;i ++) {
                         console.log(links[i].text);
-                        links[i].on('click', function() {
+                        links[i].click(function() {
+                            alert(this.text);
                             var notebook = document.getElementById(frameID);
                             var data = {"actions": "scroll-heading", "msg": this.text};
                             console.log(data)
