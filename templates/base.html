@@ -18,6 +18,7 @@
             var data = {"actions": "", "msg": ""};
             $(function(argument) {
                 for(var i = 0;i < actions_list.length; i ++) {
+                    console.log(actions_list[i]);
                     $("#" + actions_list[i]).click(function(){
                         var notebook = document.getElementById(frameID);
                         data.actions = actions_list[i];
@@ -26,6 +27,7 @@
                         } else {
                             data.msg = "";
                         }
+                        console.log(data);
                         notebook.contentWindow.postMessage(data, "*");
                     });
                 }
