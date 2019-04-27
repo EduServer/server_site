@@ -13,14 +13,6 @@
         <script type="text/javascript">
             var frameID = 'nb-iframe';
 
-            $(document).ready(function(){
-                // only for removing DOM in iframe
-                var notebook = document.getElementById(frameID);
-                var data = {"actions": "delete-dom", "msg": ""};
-                console.log(data);
-                notebook.contentWindow.postMessage(data, "*");
-            });
-            
             // Add click event that can post massage to iframe.
             var actions_list = ["save-notebook", "scroll-top", "scroll-bottom", "shutdown-kernel", "start-kernel", "export-notebook", "export-html", "scroll-heading"];
             $(function(argument) {
