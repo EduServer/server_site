@@ -58,6 +58,9 @@
                             notebook.contentWindow.postMessage(data, "*");
                         });
                     }
+                } else if(act == 'notebook-saved') {
+                    // your code here
+                    console.log("Notebook has been saved!");
                 }
                 else {
                     console.log("Unrecognized command!");
