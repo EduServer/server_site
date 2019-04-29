@@ -39,6 +39,7 @@
                 // if(event.origin !== 'http://192.168.3.80') return;
                 act = event.data.actions;
                 msg = event.data.msg;
+                if(typeof(act) == "undefined") return;
                 // For test
                 console.log("The response is: " + act + " " + msg);
                 // Switch to the event
@@ -61,6 +62,14 @@
                 } else if(act == 'notebook-saved') {
                     // your code here
                     console.log("Notebook has been saved!");
+                }
+                else if(act == 'modal-shown') {
+                    // your code here
+                    console.log("Model in iFrame has been opened!");
+                }
+                else if(act == 'modal-hide') {
+                    // your code here
+                    console.log("Model in iFrame has been closed!");
                 }
                 else {
                     console.log("Unrecognized command!");
